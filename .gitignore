@@ -1,0 +1,25 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ
+.idea/
+*.iml
+*.eml
+*.iws
+*.ipr
+
+# VS Code
+.vscode/
+
+# Mac
+.DS_Store
+
+# Maven
+target/
+*.xml.releaseBackup
+release.properties
+
+/webdav/
+docker/webdav/

@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  webdav:
+    restart: always
+    image: "bytemark/webdav:2.4"
+    ports:
+      - "9090:80"
+    environment:
+      AUTH_TYPE: Basic
+      USERNAME: developer
+      PASSWORD: developer
+    volumes:
+      - ./webdav:/var/lib/dav
+    healthcheck:
+      test: ["CMD-SHELL", "wget --quiet --spider --header \"Authorization: Basic `echo -n developer:developer | base64`\" http://localhost/"]
+      interval: 10s
+      timeout: 1s
+      retries: 5
+      start_period: 10s
+
