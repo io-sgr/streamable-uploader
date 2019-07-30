@@ -4,6 +4,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static io.sgr.streamable.uploader.streams.webdav.WebDavConstants.DEFAULT_BUFFER_SIZE;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.sgr.streamable.uploader.StreamingChannel;
 import io.sgr.streamable.uploader.StreamingRequest;
 import io.sgr.streamable.uploader.utils.http.BasicAuthInterceptor;
@@ -34,6 +35,7 @@ public class WebDavUploadChannel implements StreamingChannel {
         this.client = builder.build();
     }
 
+    @SuppressFBWarnings("OS_OPEN_STREAM")   // The returned stream will be closed somewhere else.
     @Nonnull
     @Override
     public OutputStream open(@Nonnull final StreamingRequest request, @Nonnull final String identifier) throws IOException {
