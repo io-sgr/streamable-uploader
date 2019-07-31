@@ -43,6 +43,7 @@ import java.io.OutputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 import java.util.concurrent.ExecutionException;
 
 import javax.annotation.Nonnull;
@@ -141,6 +142,11 @@ public class WebDavOutputStream extends OutputStream {
                 } finally {
                     Util.closeQuietly(source);
                 }
+            }
+
+            @Override
+            public boolean isOneShot() {
+                return true;
             }
 
         };
