@@ -27,13 +27,11 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>streamify</artifactId>
+    <artifactId>streamify.extensions</artifactId>
+    <packaging>pom</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>jsr305</artifactId>
-        </dependency>
-    </dependencies>
+    <modules>
+        <module>webdav-uploader</module>
+    </modules>
 
 </project>

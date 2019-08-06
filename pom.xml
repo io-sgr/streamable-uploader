@@ -27,20 +27,39 @@
         <version>1.0.8</version>
     </parent>
 
+    <groupId>io.sgr.streamify</groupId>
     <artifactId>streamify-root</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
         <module>streamify</module>
+        <module>extensions</module>
     </modules>
 
     <properties>
         <dep.commons-dependencies.version>1.0.0</dep.commons-dependencies.version>
+        <dep.okhttp.version>3.14.2</dep.okhttp.version>
+        <dep.okio.version>1.17.4</dep.okio.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.sgr.streamify</groupId>
+                <artifactId>streamify</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${dep.okhttp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okio</groupId>
+                <artifactId>okio</artifactId>
+                <version>${dep.okio.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-annotations</artifactId>
