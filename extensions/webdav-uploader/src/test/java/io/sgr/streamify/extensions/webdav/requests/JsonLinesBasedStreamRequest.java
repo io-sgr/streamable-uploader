@@ -15,9 +15,9 @@
  *
  */
 
-package io.sgr.streamable.uploader.requests;
+package io.sgr.streamify.extensions.webdav.requests;
 
-import io.sgr.streamable.uploader.StreamingRequest;
+import io.sgr.streamify.StreamingRequest;
 
 import java.util.Optional;
 import java.util.UUID;

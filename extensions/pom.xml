@@ -23,7 +23,7 @@
 
     <parent>
         <groupId>io.sgr.streamify</groupId>
-        <artifactId>streamify-root</artifactId>
+        <artifactId>streamify</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 

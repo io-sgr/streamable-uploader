@@ -15,12 +15,14 @@
  *
  */
 
-package io.sgr.streamable.uploader.streams.webdav;
+package io.sgr.streamify.extensions.webdav;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
+
+import io.sgr.streamify.extensions.webdav.utils.WebDavConstants;
 
 import okhttp3.Call;
 import okhttp3.Callback;

@@ -15,9 +15,10 @@
  *
  */
 
-package io.sgr.streamable.uploader.config;
+package io.sgr.streamify.extensions.webdav.config;
 
-import io.sgr.streamable.uploader.streams.webdav.WebDavUploadChannel;
+import io.sgr.streamify.extensions.webdav.WebDavUploadChannel;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

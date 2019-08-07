@@ -32,7 +32,7 @@
     <dependencies>
         <dependency>
             <groupId>io.sgr.streamify</groupId>
-            <artifactId>streamify</artifactId>
+            <artifactId>streamify.core</artifactId>
         </dependency>
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>

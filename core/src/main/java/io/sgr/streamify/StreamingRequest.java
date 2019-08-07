@@ -15,10 +15,20 @@
  *
  */
 
-package io.sgr.streamable.uploader.streams.webdav;
+package io.sgr.streamify;
 
-class WebDavConstants {
+import java.util.Optional;
 
-    static final int DEFAULT_BUFFER_SIZE = 1024 * 1024;
+import javax.annotation.Nonnull;
+
+public interface StreamingRequest {
+
+    @Nonnull
+    String getId();
+
+    @Nonnull
+    String getContentType();
+
+    Optional<Integer> getBufferSize();
 
 }

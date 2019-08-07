@@ -21,5 +21,4 @@ target/
 *.xml.releaseBackup
 release.properties
 
-/webdav/
-docker/webdav/
+extensions/webdav-uploader/docker/webdav/

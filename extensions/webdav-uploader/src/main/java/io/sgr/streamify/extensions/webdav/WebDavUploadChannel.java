@@ -15,16 +15,17 @@
  *
  */
 
-package io.sgr.streamable.uploader.streams.webdav;
+package io.sgr.streamify.extensions.webdav;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Strings.isNullOrEmpty;
-import static io.sgr.streamable.uploader.streams.webdav.WebDavConstants.DEFAULT_BUFFER_SIZE;
+import static io.sgr.streamify.extensions.webdav.utils.WebDavConstants.DEFAULT_BUFFER_SIZE;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import io.sgr.streamable.uploader.StreamingChannel;
-import io.sgr.streamable.uploader.StreamingRequest;
-import io.sgr.streamable.uploader.utils.http.BasicAuthInterceptor;
+
+import io.sgr.streamify.StreamingChannel;
+import io.sgr.streamify.StreamingRequest;
+import io.sgr.streamify.extensions.webdav.utils.http.BasicAuthInterceptor;
 import okhttp3.OkHttpClient;
 
 import java.io.IOException;

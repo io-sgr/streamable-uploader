@@ -15,16 +15,10 @@
  *
  */
 
-package io.sgr.streamable.uploader;
+package io.sgr.streamify.extensions.webdav.utils;
 
-import java.io.IOException;
-import java.io.OutputStream;
+public class WebDavConstants {
 
-import javax.annotation.Nonnull;
-
-public interface StreamingChannel {
-
-    @Nonnull
-    OutputStream open(@Nonnull StreamingRequest request, @Nonnull String identifier) throws IOException;
+    public static final int DEFAULT_BUFFER_SIZE = 1024 * 1024;
 
 }

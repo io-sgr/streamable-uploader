@@ -15,7 +15,7 @@
  *
  */
 
-package io.sgr.streamable.uploader.utils.http;
+package io.sgr.streamify.extensions.webdav.utils.http;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Strings.isNullOrEmpty;

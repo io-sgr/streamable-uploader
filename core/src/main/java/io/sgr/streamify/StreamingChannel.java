@@ -15,20 +15,16 @@
  *
  */
 
-package io.sgr.streamable.uploader;
+package io.sgr.streamify;
 
-import java.util.Optional;
+import java.io.IOException;
+import java.io.OutputStream;
 
 import javax.annotation.Nonnull;
 
-public interface StreamingRequest {
+public interface StreamingChannel {
 
     @Nonnull
-    String getId();
-
-    @Nonnull
-    String getContentType();
-
-    Optional<Integer> getBufferSize();
+    OutputStream open(@Nonnull StreamingRequest request, @Nonnull String identifier) throws IOException;
 
 }

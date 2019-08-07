@@ -15,14 +15,15 @@
  *
  */
 
-package io.sgr.streamable.uploader;
+package io.sgr.streamify.extensions.webdav;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.Assert.fail;
 
-import io.sgr.streamable.uploader.config.ChannelConfigurer;
-import io.sgr.streamable.uploader.requests.JsonLinesBasedStreamRequest;
-import io.sgr.streamable.uploader.streams.webdav.WebDavUploadChannel;
+import io.sgr.streamify.StreamingRequest;
+import io.sgr.streamify.extensions.webdav.config.ChannelConfigurer;
+import io.sgr.streamify.extensions.webdav.requests.JsonLinesBasedStreamRequest;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
