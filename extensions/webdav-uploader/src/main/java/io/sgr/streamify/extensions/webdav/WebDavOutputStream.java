@@ -21,6 +21,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Objects.nonNull;
 
+import io.sgr.streamify.OutputStreamWrapper;
 import io.sgr.streamify.extensions.webdav.utils.WebDavConstants;
 import io.sgr.streamify.extensions.webdav.utils.http.OkHttpStreamingCallback;
 import io.sgr.streamify.extensions.webdav.utils.http.OkHttpStreamingRequestBody;
@@ -35,6 +36,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
+import java.util.Collection;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -47,15 +49,16 @@ public class WebDavOutputStream extends OutputStream {
     private final OkHttpClient client;
     private final String url;
     private final String contentType;
+    private final int bufferSize;
+    private final Collection<OutputStreamWrapper> wrappers;
 
-    private final PipedInputStream inputStream;
-    private final PipedOutputStream outputStream;
-
+    private PipedInputStream inputStream;
+    private OutputStream outputStream;
     private CompletableFuture<?> future;
 
     WebDavOutputStream(
-            @Nonnull final OkHttpClient client, @Nonnull final String url, @Nonnull final String contentType, final int bufferSize
-    ) throws IOException {
+            @Nonnull final OkHttpClient client, @Nonnull final String url, @Nonnull final String contentType, final int bufferSize,
+            final Collection<OutputStreamWrapper> wrappers) {
         //noinspection ConstantConditions
         checkArgument(nonNull(client), "Missing okhttp client!");
         this.client = client;
@@ -63,11 +66,18 @@ public class WebDavOutputStream extends OutputStream {
         this.url = url;
         checkArgument(!isNullOrEmpty(contentType), "Missing content type!");
         this.contentType = contentType;
-        this.inputStream = new PipedInputStream(bufferSize <= 0 ? WebDavConstants.DEFAULT_BUFFER_SIZE : bufferSize);
-        this.outputStream = new PipedOutputStream(this.inputStream);
+        this.bufferSize = bufferSize <= 0 ? WebDavConstants.DEFAULT_BUFFER_SIZE : bufferSize;
+        this.wrappers = wrappers;
     }
 
-    WebDavOutputStream init() {
+    WebDavOutputStream init() throws IOException {
+        this.inputStream = new PipedInputStream(bufferSize);
+        this.outputStream = new PipedOutputStream(inputStream);
+        if (nonNull(this.wrappers) && !wrappers.isEmpty()) {
+            for (OutputStreamWrapper wrapper : wrappers) {
+                this.outputStream = wrapper.wrap(this.outputStream);
+            }
+        }
         final RequestBody reqBody = new OkHttpStreamingRequestBody(inputStream, contentType);
         LOGGER.info("Uploading content to '{}'", url);
         final Request request = new Request.Builder().url(url).put(reqBody).build();

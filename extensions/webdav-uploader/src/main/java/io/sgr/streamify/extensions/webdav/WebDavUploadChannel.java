@@ -57,9 +57,10 @@ public class WebDavUploadChannel implements StreamingChannel {
     @Nonnull
     @Override
     public OutputStream open(@Nonnull final StreamingRequest request, @Nonnull final String identifier) throws IOException {
+        checkArgument(!isNullOrEmpty(identifier), "Identifier shouldn't be blank string!");
         final String relPath = buildRelativePath(request, identifier);
         final OkHttpClient client = rebuildClientPerRequestIfNeeded(request);
-        return new WebDavOutputStream(client, baseUrl + relPath, request.getContentType(), request.getBufferSize().orElse(DEFAULT_BUFFER_SIZE))
+        return new WebDavOutputStream(client, baseUrl + relPath, request.getContentType(), request.getBufferSize().orElse(DEFAULT_BUFFER_SIZE), null)
                 .init();
     }
 
